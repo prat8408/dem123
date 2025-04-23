@@ -1,0 +1,81 @@
+body {
+    font-family: sans-serif;
+    background-color: #f8f9fa;
+}
+
+.navbar {
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.nav-link {
+    margin-left: 15px;
+    transition: color 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+    color: #007bff;
+}
+
+.tab-content {
+    display: none; /* Initially hide all content */
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.tab-content.active {
+    display: block; /* Show the active tab */
+    opacity: 1;
+}
+
+.animated-element {
+    font-size: 1.2rem;
+    margin-top: 20px;
+    animation: pulse 2s infinite alternate;
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(1.1);
+        opacity: 1;
+    }
+}
+
+.special-text {
+    font-size: 1.5rem;
+    color: #dc3545; /* Example special color */
+    font-style: italic;
+    margin-top: 30px;
+}
+
+.heart-animation {
+    font-size: 2rem;
+    animation: beat 1s infinite alternate;
+}
+
+@keyframes beat {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Style for images */
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover; /* Maintain aspect ratio and cover container */
+}

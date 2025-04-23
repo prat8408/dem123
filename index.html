@@ -1,0 +1,800 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Someone Special</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .page-content {
+            display: none;
+            padding: 20px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+            backdrop-filter: blur(4px);
+            margin-top: 20px;
+            min-height: 400px;
+          
+        }
+
+        .active-page {
+            display: block;
+        }
+
+        .nav-pills .nav-link {
+            border-radius: 20px;
+            padding: 10px 20px;
+            margin: 0 5px;
+            transition: all 0.3s ease;
+            background: rgba(255, 255, 255, 0.6);
+            color: #495057;
+            font-weight: 600;
+        }
+
+        .nav-pills .nav-link.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(116, 79, 168, 0.3);
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 0 20px;
+        }
+
+        h1 {
+            font-weight: 700;
+            color: #5e2ca5;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .subtitle {
+            font-style: italic;
+            color: #6c757d;
+            margin-bottom: 30px;
+        }
+
+        .memory-card {
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 25px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .memory-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .memory-img {
+            height: 200px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .heart {
+            color: #e25555;
+            display: inline-block;
+            animation: heartbeat 1.5s infinite;
+        }
+
+        @keyframes heartbeat {
+            0% {
+                transform: scale(1);
+            }
+
+            15% {
+                transform: scale(1.3);
+            }
+
+            30% {
+                transform: scale(1);
+            }
+
+            45% {
+                transform: scale(1.3);
+            }
+
+            60% {
+                transform: scale(1);
+            }
+        }
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% {
+                transform: translate(0, 0px);
+            }
+
+            50% {
+                transform: translate(0, 15px);
+            }
+
+            100% {
+                transform: translate(0, 0px);
+            }
+        }
+
+        .message {
+            line-height: 1.8;
+            font-size: 1.1rem;
+            color: #555;
+        }
+
+        .quote {
+            font-style: italic;
+            color: #6c757d;
+            border-left: 4px solid #7c5cbf;
+            padding-left: 15px;
+            margin: 20px 0;
+        }
+
+        .gallery-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            grid-gap: 15px;
+        }
+
+        .gallery-item {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.03);
+        }
+
+        .gallery-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: all 0.5s ease;
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px;
+            transform: translateY(100%);
+            transition: all 0.3s ease;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            transform: translateY(0);
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: #7b68ee;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 10px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 4px solid #764ba2;
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+        }
+
+        .left {
+            left: 0;
+        }
+
+        .right {
+            left: 50%;
+        }
+
+        .left::after {
+            right: -13px;
+        }
+
+        .right::after {
+            left: -13px;
+        }
+
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            color: #4a4a4a;
+            margin-bottom: 10px;
+        }
+
+        .timeline-date {
+            color: #7b68ee;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .btn-special {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 25px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(116, 79, 168, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .btn-special:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(116, 79, 168, 0.4);
+            color: white;
+        }
+
+        .confetti {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background-color: #f2d74e;
+            position: absolute;
+            top: -10px;
+            border-radius: 0%;
+        }
+
+        .confetti--purple {
+            background-color: #a28be5;
+        }
+
+        .confetti--pink {
+            background-color: #ff80bf;
+        }
+
+        .confetti--blue {
+            background-color: #80b3ff;
+        }
+
+        .modal-content {
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .modal-img {
+            width: 100%;
+            height: auto;
+            max-height: 80vh;
+            object-fit: contain;
+        }
+
+        .memory-form {
+            background: linear-gradient(to bottom right, #f8f9fa, #e9ecef);
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        #playlist {
+            background: rgba(255, 255, 255, 0.8);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .song-item {
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            background: white;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+        }
+
+        .song-item:hover {
+            background: #f1f3f9;
+            transform: translateX(5px);
+        }
+
+        .song-icon {
+            margin-right: 15px;
+            color: #764ba2;
+        }
+
+        /* Apply background image with overlay */
+.bg-img {
+  position: relative;
+  background-image: url(IMG-20250423-WA0016.jpg); /* Replace with actual image path */
+  background-size: cover;
+  background-position: center;
+  color: #111; /* Dark text for readability */
+  z-index: 1;
+  overflow: hidden;
+}
+
+/* Overlay to dim the background image */
+.bg-img::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.6); /* White translucent overlay */
+  z-index: 0;
+}
+
+/* Ensure the actual text content stays on top of the overlay */
+.bg-img > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Optional enhancements */
+.message {
+  font-size: 1.1rem;
+  font-weight: bolder;
+  line-height: 2;
+  color: #111;
+}
+
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(135deg, #5a70d5 0%, #68408f 100%);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header animate__animated animate__fadeIn">
+            <h1>Happy Birthday Miss <span class="heart">✨</span></h1>
+            <p class="subtitle">A journey through our memories together</p>
+        </div>
+
+        <ul class="nav nav-pills nav-justified mb-4 animate__animated animate__fadeInUp">
+            <li class="nav-item">
+                <a class="nav-link active" data-bs-toggle="pill" href="#home">Home</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="pill" href="#gallery">Gallery</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="pill" href="#memories">Memories</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-bs-toggle="pill" href="#message">Message</a>
+            </li>
+        </ul>
+
+        <div class="tab-content">
+            <!-- Home Page -->
+            <div class="page-content active-page animate__animated animate__fadeIn" id="home">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <div class="floating">
+                            <img src="IMG-20250423-WA0038.jpg" alt="Main Image"
+                                class="img-fluid rounded-circle shadow mb-4">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <h2 class="mb-4">Hey there, Bestie! <span class="heart">✨</span></h2>
+                        <p class="message">
+                            I made this website just for you - to celebrate our friendship and everything you mean to
+                            me. Click through the tabs to see photos, memories, and a special message I've prepared.
+                        </p>
+                        <p class="quote">
+                            "Some people arrive and make such a beautiful impact on your life, you can barely remember
+                            what life was like without them."
+                        </p>
+                        <button class="btn btn-special mt-3" id="surprise-btn">Click For A Surprise!</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Gallery Page -->
+            <div class="page-content animate__animated animate__fadeIn" id="gallery">
+                <h3 class="mb-4 text-center">Our Photo Gallery</h3>
+                <div class="gallery-container">
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal"
+                        data-caption="unforgettable One">
+                        <img src="IMG-20250423-WA0038.jpg" class="gallery-img" alt="Memory 16">
+                        <div class="gallery-caption">just you and me </div>
+                    </div>
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal"
+                        data-caption="Amazing day with you and shraddha">
+                        <img src="IMG-20250331-WA0007.jpg" class="gallery-img" alt="Memory 4">
+                        <div class="gallery-caption">Amazing day with you and shraddha</div>
+                    </div>
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal"
+                        data-caption="That time we couldn't stop laughing">
+                        <img src="IMG-20250305-WA0028.jpg" class="gallery-img" alt="Memory 1">
+                        <div class="gallery-caption">That time we couldn't stop laughing</div>
+                    </div>
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal"
+                        data-caption="A million filters, but only one favorite face">
+                        <img src="IMG-20250305-WA0029.jpg" class="gallery-img" alt="Memory 2">
+                        <div class="gallery-caption">A million filters, but only one favorite faceA million filters, but
+                            only one favorite face</div>
+                    </div>
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal"
+                        data-caption="Our first road trip together">
+                        <img src="IMG-20250305-WA0031.jpg" class="gallery-img" alt="Memory 3">
+                        <div class="gallery-caption">Our first road trip together</div>
+                    </div>
+
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal"
+                        data-caption="Through every frame, one constant — you by my side.">
+                        <img src="IMG-20250423-WA0027.jpg" class="gallery-img" alt="Memory 5">
+                        <div class="gallery-caption">Through every frame, one constant — you by my side.</div>
+                    </div>
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal"
+                        data-caption="We weren't posing, just being perfectly us">
+                        <img src="IMG-20250423-WA0028.jpg" class="gallery-img" alt="Memory 6">
+                        <div class="gallery-caption">We weren't posing, just being perfectly us</div>
+                    </div>
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal"
+                        data-caption="The day felt normal, but being with you made it unforgettable.">
+                        <img src="IMG-20250423-WA0029.jpg" class="gallery-img" alt="Memory 7">
+                        <div class="gallery-caption">The day felt normal, but being with you made it unforgettable.
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal"
+                        data-caption="Not every moment needs a reason — some are just meant to be lived.">
+                        <img src="IMG-20250423-WA0030.jpg" class="gallery-img" alt="Memory 8">
+                        <div class="gallery-caption">Not every moment needs a reason — some are just meant to be lived.
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal"
+                        data-caption="We didn't know this day would become a core memory, but it did.">
+                        <img src="IMG-20250423-WA0033.jpg" class="gallery-img" alt="Memory 11">
+                        <div class="gallery-caption">We didn't know this day would become a core memory, but it did.
+                        </div>
+                    </div>
+                    <div class="gallery-item" data-bs-toggle="modal" data-bs-target="#imageModal"
+                        data-caption="Random clicks, permanent memories.">
+                        <img src="IMG-20250423-WA0034.jpg" class="gallery-img" alt="Memory 12">
+                        <div class="gallery-caption">Random clicks, permanent memories.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Memories Page -->
+            <div class="page-content animate__animated animate__fadeIn" id="memories">
+                <h3 class="mb-4 text-center">Our Journey Together</h3>
+                <div class="timeline">
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <div class="timeline-date">March 28, 2023</div>
+                            <h4 class="timeline-title">When We First Introduced</h4>
+                            <p>I still remember—you texted me first, asking about your pendrive. That small enquiry
+                                brought us into touch. You even called to confirm it was really me. Who would've thought
+                                that simple moment would be the beginning of something so special?</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <div class="timeline-date">August 23, 2024</div>
+                            <h4 class="timeline-title">We Decided to Meet</h4>
+                            <p>We said it was for interviews—but honestly, I just wanted to see you. So I was more than
+                                ready for that bus trip to Pune.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <div class="timeline-date">August 24, 2024</div>
+                            <h4 class="timeline-title">A Day Full of Unforgettable Memories</h4>
+                            <p>We spent the whole day together at PMPL and PCCoE, just enjoying each other's company and
+                                making the most of every moment. From random chats and college canteen snacks to
+                                exploring different spots around campus, everything felt easy and fun. It's crazy how
+                                the simplest hangouts can turn into some of the best memories. Definitely one of those
+                                days we'll look back on and smile.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <div class="timeline-date">August 25, 2024</div>
+                            <h4 class="timeline-title">Back from Pune, Full of Stories</h4>
+                            <p>We came back from Pune together — shared a bus, shared our thoughts, and honestly, shared
+                                some of the best moments. That ride was more than just a journey; it was filled with
+                                real conversations, unforgettable pictures, and endless laughs. You somehow always know
+                                how to turn an ordinary trip into something special. Thanks for making the day so light,
+                                fun, and full of happiness.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <div class="timeline-date">March 20, 2025</div>
+                            <h4 class="timeline-title">A Special Visit to Pune</h4>
+                            <p>I came all the way to Pune just to meet you — and it was totally worth it. I was full of
+                                emotions that day: excited to finally see you, happy beyond words when you showed up in
+                                traditional attire (you absolutely stunned me), and a little sad when we couldn't travel
+                                back together in the same bus due to your college. But even with that bittersweet
+                                ending, the day felt incredibly special. Some moments really do stay with you.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <div class="timeline-date">Today</div>
+                            <h4 class="timeline-title">A Heartfelt Birthday Wish</h4>
+                            <p>There are countless memories we've shared — too many to write down, but they're always in
+                                my heart and mind. I know I've made mistakes, been stupid and careless at times, and
+                                maybe I haven't always been the best person. I understand I've hurt you in ways you
+                                might never forget, and I'm truly sorry for that.</p>
+                            <p>I really am into you, and I've always wanted to express how I feel, but I haven't been
+                                able to — maybe because of circumstances, maybe because of me. I believe it's all part
+                                of my karmas, and I accept that.</p>
+                            <p>Still, from the deepest part of my heart, I wish you a very Happy Birthday. I wanted to
+                                make this day truly special, but I messed up again. I'm sorry, Miss. If possible… please
+                                forgive me.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Message Page -->
+            <!-- Message Page -->
+            <div class="page-content animate__animated animate__fadeIn" id="message">
+                <div class="row justify-content-center">
+                    <div class="col-md-8">
+                        <div class="card shadow-lg border-0">
+                            <div class="card-body p-5 bg-img">
+                                <h3 class="card-title text-center mb-4">A Special Message For You</h3>
+                                <p class="message">
+                                    I know I’ve made mistakes... I know I’ve hurt you in ways that maybe I can't undo 💔
+                                </p>
+                                <p class="message">
+                                    And for that, I carry the weight of regret every single day. I may not be perfect, I
+                                    may be stupid at times, and maybe even a fool in your eyes... but one thing I know
+                                    for sure—my feelings for you are real, deep, and pure ❤️
+                                </p>
+                                <p class="message">
+                                    There’s so much I want to say, so much I wish I could show you... but life has its
+                                    own way of creating distances, and maybe I deserve that… maybe it’s all my Karma 😑
+                                </p>
+                                <p class="message">
+                                    Still, on this special day, I couldn’t stop myself from wishing you:<br>
+                                    <strong>A very Happy Birthday 🎉🎈</strong><br>
+                                    May your life be filled with peace, happiness, and all the love in the world that
+                                    you truly deserve ✨🕊️
+                                </p>
+                                <p class="message">
+                                    I wanted to make this birthday extra special for you, but I messed up... and I'm
+                                    really sorry for that 😔
+                                </p>
+                                <p class="message">
+                                    If ever... even just for a second... your heart is open to forgiveness, I hope
+                                    you’ll let me in again 🙇‍♂️
+                                </p>
+                                <p class="message">
+                                    Until then, I’ll keep praying for your smile, your success, and your dreams 🌟<br>
+                                    Because no matter where I am, a part of me will always care for you, miss you, and
+                                    silently love you 🕊️💌
+                                </p>
+                                <p class="message text-end">
+                                    Take care, and once again…<br>
+                                    <strong>Happy Birthday Miss.., from the bottom of my heart 🎁💖</strong>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <!-- Image Modal -->
+            <div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-lg modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-body p-0">
+                            <img src="" class="modal-img" id="modalImage" alt="Memory">
+                            <div class="p-3">
+                                <h5 id="imageCaption" class="mb-0"></h5>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+        <script>
+            $(document).ready(function () {
+                // Tab navigation with animations
+                $('.nav-link').on('click', function (e) {
+                    e.preventDefault();
+
+                    // Get the target content
+                    var target = $(this).attr('href');
+
+                    // Remove active class from all tabs and content
+                    $('.nav-link').removeClass('active');
+                    $('.page-content').removeClass('active-page');
+                    $('.page-content').removeClass('animate__fadeIn');
+                    $('.page-content').addClass('animate__fadeOut');
+
+                    // Add active class to clicked tab
+                    $(this).addClass('active');
+
+                    // Delay content switch for animation
+                    setTimeout(function () {
+                        $('.page-content').removeClass('animate__fadeOut');
+                        $(target).addClass('active-page animate__fadeIn');
+                    }, 300);
+                });
+
+                // Gallery image modal
+                $('.gallery-item').on('click', function () {
+                    var imgSrc = $(this).find('.gallery-img').attr('src');
+                    var caption = $(this).data('caption');
+
+                    $('#modalImage').attr('src', imgSrc);
+                    $('#imageCaption').text(caption);
+                });
+
+                // Create confetti function
+                function createConfetti() {
+                    const confettiCount = 100;
+                    const confettiColors = ['', '--purple', '--pink', '--blue'];
+                    const container = document.body;
+
+                    for (let i = 0; i < confettiCount; i++) {
+                        setTimeout(() => {
+                            const confetti = document.createElement('div');
+                            const color = confettiColors[Math.floor(Math.random() * confettiColors.length)];
+                            confetti.className = `confetti confetti${color}`;
+
+                            // Random position
+                            const posX = Math.random() * window.innerWidth;
+                            confetti.style.left = `${posX}px`;
+
+                            // Random size
+                            const size = Math.random() * 10 + 5;
+                            confetti.style.width = `${size}px`;
+                            confetti.style.height = `${size}px`;
+
+                            // Random rotation
+                            const rotation = Math.random() * 360;
+                            confetti.style.transform = `rotate(${rotation}deg)`;
+
+                            // Random shape
+                            const shapes = ['50%', '0%'];
+                            const shape = shapes[Math.floor(Math.random() * shapes.length)];
+                            confetti.style.borderRadius = shape;
+
+                            container.appendChild(confetti);
+
+                            // Animation
+                            const animation = confetti.animate(
+                                [
+                                    { transform: `translate(0, 0) rotate(${rotation}deg)`, opacity: 1 },
+                                    { transform: `translate(${(Math.random() - 0.5) * 200}px, ${window.innerHeight}px) rotate(${rotation + Math.random() * 600}deg)`, opacity: 0 }
+                                ],
+                                {
+                                    duration: Math.random() * 3000 + 2000,
+                                    easing: 'cubic-bezier(0.1, 0.8, 0.3, 1)'
+                                }
+                            );
+
+                            animation.onfinish = () => {
+                                confetti.remove();
+                            };
+                        }, Math.random() * 500);
+                    }
+                }
+
+                // Surprise button click
+                $('#surprise-btn').on('click', function () {
+                    createConfetti();
+
+                    // Show a sweet message
+                    setTimeout(() => {
+                        alert("Happy Birthday Miss.....✨");
+                    }, 800);
+                });
+
+                // Add song functionality
+                $('#addSongBtn').on('click', function () {
+                    const title = $('#songTitle').val();
+                    const artist = $('#artistName').val();
+
+                    if (title && artist) {
+                        const newSong = `
+                        <div class="song-item" data-song="custom">
+                            <div class="song-icon">🎵</div>
+                            <div>
+                                <h5 class="mb-0">${title}</h5>
+                                <small>${artist}</small>
+                            </div>
+                        </div>
+                    `;
+
+                        $('#playlist').append(newSong);
+
+                        // Clear the form
+                        $('#songTitle').val('');
+                        $('#artistName').val('');
+                        $('#songMemory').val('');
+
+                        // Show confirmation
+                        alert('Song added to our playlist! ❤️');
+                    } else {
+                        alert('Please enter both song title and artist name.');
+                    }
+                });
+
+                // Song click event
+                $(document).on('click', '.song-item', function () {
+                    const songName = $(this).find('h5').text();
+                    const artistName = $(this).find('small').text();
+
+                    alert(`🎵 Now playing: "${songName}" by ${artistName}\n\nImagine us dancing to this song... ❤️`);
+                });
+            });
+        </script>
+</body>
+
+</html>
